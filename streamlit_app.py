@@ -39,17 +39,17 @@ try:
       streamlit.error("Please select a fruit to get information.")
   else:
       back_from_function = get_fruityvice_data(fruit_choice)
-      streamlit.dataframe(back_from_function)
-    
+      streamlit.dataframe(back_from_function)    
 except URLError as e:
   streamlit.error()
 
+
 streamlit.header("The fruit load list contains:")
-#SNOWFLAKE RELATEED FUNCTIONS
+#SNOWFLAKE RELATED FUNCTIONS
 def get_fruit_load_list():
     with my_cnx.cursor() as my_cur:
-    my_cur.execute("SELECT * FROM FRUIT_LOAD_LIST")
-    return my_cur.fetchall()
+        my_cur.execute("SELECT * FROM FRUIT_LOAD_LIST")
+        return my_cur.fetchall()
     #Add a button to load the fruit
 if streamlit.button('Get Fruit Load List'):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"]) 
